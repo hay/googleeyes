@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Google is watching you</title>
+    <meta property="og:type" content="blog" />
+    <meta property="og:url" content="http://projects.haykranen.nl/google" />
+    <meta property="og:image" content="http://projects.haykranen.nl/google/img.jpg" />
+    <meta property="og:description" content="Google is watching you..." />
+    <style>
+        #bg {
+            background: url('bg.jpg');
+            width: 600px;
+            height: 455px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .oog1 {
+            background: url(oog1.png);
+            position: absolute;
+            width: 26px;
+            height: 25px;
+            left: 202px;
+            top: 225px;
+        }
+
+        .oog2 {
+            background: url(oog2.png);
+            position: absolute;
+            width: 28px;
+            height: 25px;
+            left: 294px;
+            top: 224px;
+        }
+
+        #search {
+            text-align: center;
+            width: 75%;
+            font-size: 24px;
+            height: 30px;
+            margin: 0 auto;
+            display: block;
+            border: 3px solid #ccc;
+            padding: 10px;
+            font-weight: bold;
+        }
+    </style>
+
+    <!-- Yeah, this is pretty ironic, but Google tracks you anyway, right? :-) -->
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-15405780-2']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+<body>
+    <a href="http://en.wikipedia.org/wiki/PRISM_(surveillance_program)">
+        <div id="bg">
+            <div class="oog1"></div>
+            <div class="oog2"></div>
+        </div>
+    </a>
+
+    <input id="search" placeholder="Google search" />
+
+    <script src="jquery.js"></script>
+    <script>
+        var radius = 5;
+
+        function move( el, x, y, ox, oy ) {
+            var newpos = normalize({
+                x : x - ox,
+                y : y - oy,
+            });
+
+            $( el ).css({
+                left : newpos.x + ox,
+                top  : newpos.y + oy,
+            });
+        }
+
+        function normalize( p ) {
+            var norm = Math.sqrt( (p.x * p.x) + (p.y * p.y) );
+            if (norm !== 0) {
+                p.x = p.x * (radius / norm);
+                p.y = p.y * (radius / norm);
+            }
+
+            return p;
+        }
+
+        var p1 = $(".oog1").position();
+        var p2 = $(".oog2").position();
+
+        $(window).mousemove(function(e) {
+            move(".oog1", e.pageX, e.pageY, p1.left, p1.top );
+            move(".oog2", e.pageX, e.pageY, p2.left, p2.top );
+        });
+
+        $("#search").focus();
+
+        $("#search").on('keypress', function(e) {
+            if (e.which === 13) {
+                window.location ='http://en.wikipedia.org/wiki/PRISM_(surveillance_program)';
+            }
+        });
+    </script>
+</body>
+</html>
