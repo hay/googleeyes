@@ -8,6 +8,10 @@
     <meta property="og:image" content="http://projects.haykranen.nl/google/img.jpg" />
     <meta property="og:description" content="Google is watching you..." />
     <style>
+        * {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
         #bg {
             background: url('bg.jpg');
             width: 600px;
@@ -45,6 +49,16 @@
             padding: 10px;
             font-weight: bold;
         }
+
+        small {
+            margin: 50px auto;
+            display: block;
+            text-align: center;
+        }
+
+        small, a {
+            color: #999;
+        }
     </style>
 
     <!-- Yeah, this is pretty ironic, but Google tracks you anyway, right? :-) -->
@@ -69,6 +83,10 @@
     </a>
 
     <input id="search" placeholder="Google search" />
+
+    <small>
+        Made by <a href="http://www.haykranen.nl">Hay Kranen</a> (<a href="http://twitter.com/hayify">hayify</a>) and <a href="http://www.mennomail.nl">Pere Strooikaas</a> (<a href="http://twitter.com/mennomail">@mennomail</a>).
+    </small>
 
     <script src="jquery.js"></script>
     <script>
