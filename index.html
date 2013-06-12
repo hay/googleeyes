@@ -34,8 +34,8 @@
             position: absolute;
             width: 28px;
             height: 25px;
-            left: 294px;
-            top: 224px;
+            left: 291px;
+            top: 223px;
         }
 
         #search {
@@ -43,7 +43,7 @@
             width: 75%;
             font-size: 24px;
             height: 30px;
-            margin: 0 auto;
+            margin: 5px auto;
             display: block;
             border: 3px solid #ccc;
             padding: 10px;
@@ -116,10 +116,11 @@
 
         var p1 = $(".oog1").position();
         var p2 = $(".oog2").position();
+        var offset = ($("#bg").outerWidth( true ) - $("#bg").innerWidth()) / 2;
 
         $(window).mousemove(function(e) {
-            move(".oog1", e.pageX, e.pageY, p1.left, p1.top );
-            move(".oog2", e.pageX, e.pageY, p2.left, p2.top );
+            move(".oog1", e.pageX - offset, e.pageY, p1.left, p1.top );
+            move(".oog2", e.pageX - offset, e.pageY, p2.left, p2.top );
         });
 
         $("#search").focus();
